@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import connectDB from './config/db';
 import http from 'http';
 import { Server as SocketServer } from 'socket.io';
+import router from './routes/auth.routes';
 
 dotenv.config();
 
@@ -32,6 +33,8 @@ app.use(cors ({
 app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({extended : false}));
+
+app.use('/api/auth', router);
 
 app.get('/' , (req : Request , res : Response) => {
     res.send('API is running...');
